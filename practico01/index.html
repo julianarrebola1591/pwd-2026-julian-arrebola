@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Practico 01</title>
 </head>
 <body>
 
-    <div id="app">
-        <h1>Practico N° 1</h1>
+    <div id="app" class="container-lg">
+        <h1 class="mt-4">Practico N° 1</h1>
         <hr>
-        <span>Nombre: {{nombre}}</span><br>
-        <span>Edad: {{edad}}</span><br>
-        <span>Ciudad: {{ciudad}}</span><br>
+        <h2> Paso #2 </h2>
+        <p>Nombre: {{nombre}}</p>
+        <p>Edad: {{edad}}</p>
+        <p>Ciudad: {{ciudad}}</p>
         <p>Hola, mi nombre es {{nombre}}, tengo {{edad}} años y vivo en {{ciudad}}.</p>
+        <hr>
+        <h2> Paso #3 </h2>
+        <p>Contador: {{ contador }} </p>
+        <button class="btn btn-primary" @click="sumar">Incrementar</button>
+        <button class="btn btn-primary" @click="restar">Decrementar</button>
+        <hr>
+        
     </div>
     
 <script>
@@ -24,9 +34,15 @@
         nombre: "Julián",
         edad: 27,
         ciudad: "Madrid",
+        contador: 0,
     },
     methods: {
-        
+        sumar () {
+            this.contador += 1
+        },
+        restar () {
+            this.contador -= 1
+        }
     }, computed: {
         
     }
