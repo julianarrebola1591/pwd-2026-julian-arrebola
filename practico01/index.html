@@ -24,7 +24,15 @@
         <button class="btn btn-primary" @click="sumar">Incrementar</button>
         <button class="btn btn-primary" @click="restar">Decrementar</button>
         <hr>
-        
+        <h2> Paso #4 </h2>
+        <input v-model="nuevaTarea" type="text">
+        <button class="btn btn-primary" @click="agregarTarea">Agregar Tarea</button>
+        <ul class="mt-3">
+            <li v-for="tarea in tareas" :key="tarea.id">
+                <span>{{ tarea.texto }} - </span> <input type="checkbox" v-model="tarea.completada">
+            </li>
+        </ul>
+        <p>Totales de tareas: {{totalTareas}} - Tareas pendientes: {{ tareasPendientes }}</p>
     </div>
     
 <script>
@@ -35,6 +43,14 @@
         edad: 27,
         ciudad: "Madrid",
         contador: 0,
+        nuevaTarea: "",
+        tareas: [
+            { id:0, texto:"Lavar la ropa", completada:false },
+            { id:1, texto:"Colgar la ropa", completada:false },
+            { id:2, texto:"Hacer el practico de dinamica", completada:false },
+            { id:3, texto:"Ir al super", completada:true }
+        ],
+        contadorId: 3,
     },
     methods: {
         sumar () {
@@ -42,10 +58,25 @@
         },
         restar () {
             this.contador -= 1
-        }
+        },
+        agregarTarea (){
+            this.contadorId += 1
+            this.tareas.push({ id:this.contadorId, texto:this.nuevaTarea, completada:false })
+        },
     }, computed: {
-        
-    }
+        tareasPendientes (){
+            pendientes = 0
+            for (tarea of this.tareas){
+                if (!tarea.completada)
+                pendientes += 1
+            }
+            return pendientes
+        },
+        totalTareas(){
+            return this.tareas.length
+        }
+    },
+
 })
 </script>
 </body>
